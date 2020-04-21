@@ -1,10 +1,9 @@
 import 'package:quizzler/question.dart';
 
+int _questionPointer = 0;
+
 class Quiz {
-  List<Question> questions = [
-    Question('You can lead a cow down stairs but not up stairs.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('A slug\'s blood is green.', true),
+  List<Question> _questions = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -31,4 +30,21 @@ class Quiz {
         'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         true),
   ];
+
+  Question getQuestion() {
+    return _questions[_questionPointer];
+  }
+
+  void resetQuestion() {
+    _questionPointer = 0;
+  }
+
+  bool nextQuestion() {
+    if (_questionPointer < _questions.length - 1) {
+      _questionPointer++;
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
